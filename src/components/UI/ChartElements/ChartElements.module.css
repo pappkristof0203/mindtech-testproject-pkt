@@ -1,0 +1,13 @@
+.ChartContainer {
+  width: 650px;
+  display: flex;
+}
+
+.TimeFilterContainer {
+  width: 650px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 10px;
+  justify-content: space-between;
+}

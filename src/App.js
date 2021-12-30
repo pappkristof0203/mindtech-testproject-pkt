@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ReduxThunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+
+import HomePage from "./containers/pages/HomePage";
+import dataReducer from "./store/reducers/data";
+import Layout from "./hoc-HighOrderContainer/Layout/Layout";
+
+export const rootReducer = combineReducers({
+  data: dataReducer,
+});
+
+// I create a "store" which contain the merged reducers.
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Layout>
+        <HomePage />
+      </Layout>
+    </Provider>
   );
 }
 
